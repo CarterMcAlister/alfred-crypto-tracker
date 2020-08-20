@@ -43,7 +43,7 @@ def main(wf):
                         subtitle='Please try again.',
                         icon=ICON_ERROR)
     else:
-        url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,LTC,BCH&tsyms=USD'
+        url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,YFI&tsyms=USD'
         r = web.get(url)
         # throw an error if request failed
         # Workflow will catch this and show it to the user
@@ -52,30 +52,23 @@ def main(wf):
         formatted = format_strings_from_quote('BTC', result)
         wf.add_item(title=formatted['title'],
                     subtitle=formatted['subtitle'],
-                    arg='https://www.cryptocompare.com/',
+                    arg='https://www.coingecko.com/en/coins/bitcoin',
                     valid=True,
                     icon='icon/btc.png')
 
         formatted = format_strings_from_quote('ETH', result)
         wf.add_item(title=formatted['title'],
                     subtitle=formatted['subtitle'],
-                    arg='https://www.cryptocompare.com/',
+                    arg='https://www.coingecko.com/en/coins/ethereum',
                     valid=True,
                     icon='icon/eth.png')
 
-        formatted = format_strings_from_quote('LTC', result)
+        formatted = format_strings_from_quote('YFI', result)
         wf.add_item(title=formatted['title'],
                     subtitle=formatted['subtitle'],
-                    arg='https://www.cryptocompare.com/',
+                    arg='https://www.coingecko.com/en/coins/yearn-finance',
                     valid=True,
-                    icon='icon/ltc.png')
-
-        formatted = format_strings_from_quote('BCH', result)
-        wf.add_item(title=formatted['title'],
-                    subtitle=formatted['subtitle'],
-                    arg='https://www.cryptocompare.com/',
-                    valid=True,
-                    icon='icon/bch.png')
+                    icon='icon/yfi.png')
 
     # Send the results to Alfred as XML
     wf.send_feedback()
